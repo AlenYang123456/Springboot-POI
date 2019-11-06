@@ -1,5 +1,7 @@
 package net.general.aggregation.controller;
 
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
 import net.general.aggregation.domain.User;
 import net.general.aggregation.service.IUserService;
 import net.general.aggregation.utils.ExcelUtil;
@@ -15,25 +17,28 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.multipart.MultipartHttpServletRequest;
 
+import javax.servlet.http.HttpServletRequest;
 import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
 
 /**
- * @Author: 杨强
+ * @Author: dreamer Q
  * @Date: 2019/10/24 17:24
  * @Version 1.0
  * @Discription Excel导入接口
  */
 @RequestMapping("/api/v1/")
 @RestController
+@Api(tags = "Excel 导入导出接口")
 public class ExcelController {
 
     @Autowired
     private IUserService userService;
-
+    @ApiOperation(value = "测试swagger")
     @RequestMapping("/user")
     public String testUser() {
         return "success user~";
@@ -98,13 +103,16 @@ public class ExcelController {
 
     /**
      * Excel文件上传正确的方式
-     * @param file
      * @param req
      * @return
      * @throws IOException
      */
     @PostMapping("/upload")
-    public void upload1(MultipartFile file, @Validated UploadReq req) throws Exception {
+    public void upload1(@RequestBody @Validated UploadReq req, HttpServletRequest request) throws Exception {
+//        MultipartFile file = (MultipartFile) request.getAttribute("file");
+        MultipartHttpServletRequest multipartRequest = (MultipartHttpServletRequest)request;
+        MultipartFile file = multipartRequest.getFile("file");
+//        MultipartFile file =req.getFile();
         //从数据库查询出现有的数据,根据去重的字段分组去构建成一个HashMap,通过containsKey()判断
         //将需要更新的数据放到updateList中
         List<User> updateList=new ArrayList<>();

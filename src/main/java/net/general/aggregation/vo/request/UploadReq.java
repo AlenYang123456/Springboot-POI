@@ -1,6 +1,7 @@
 package net.general.aggregation.vo.request;
 
 import lombok.Data;
+import org.springframework.web.multipart.MultipartFile;
 
 import javax.validation.constraints.NotBlank;
 
@@ -15,4 +16,6 @@ public class UploadReq {
     /** 姓名字段 */
     @NotBlank(message = "名称字段非空")
     private String  name;
+
+//    MultipartFile file;
 }

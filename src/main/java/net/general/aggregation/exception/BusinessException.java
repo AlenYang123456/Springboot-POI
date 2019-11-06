@@ -3,7 +3,7 @@ package net.general.aggregation.exception;
 import net.general.aggregation.enums.ResultEnum;
 
 /**
- * @Author: 杨强
+ * @Author: dreamer Q
  * @Date: 2019/10/25 10:29
  * @Version 1.0
  * @Discription 自定义异常类
