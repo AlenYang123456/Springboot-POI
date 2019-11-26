@@ -26,5 +26,7 @@ public class User implements Serializable  {
   private String city;
   private Date createTime;
 
-
+  //权限注解相关
+  private String loginName;
+  public Integer getRoleId;
 }
