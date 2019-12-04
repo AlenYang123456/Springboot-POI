@@ -5,6 +5,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 /**
  * @Author: dreamer Q
@@ -21,7 +22,9 @@ public class IdGeneratorController {
      */
     @RequestMapping("/generator")
     public List<String> IdGeneratorTest(){
-        List<String> list=new ArrayList<>();
-        return list;
+        List<CharSequence> list=new ArrayList<>();
+        List<CharSequence> character=new ArrayList<>();
+        List<CharSequence> collect = list.parallelStream().filter(x -> character.contains(x)).collect(Collectors.toList());
+        return null;
     }
 }
